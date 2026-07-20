@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitar · SlideCraft</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0a0a0a] min-h-screen">
+  <div id="navbar-container"></div>
+  <main class="max-w-6xl mx-auto px-4 py-10 grid lg:grid-cols-3 gap-8">
+    <form id="requestForm" class="lg:col-span-2 space-y-6">
+      <h2 class="text-3xl font-bold">Solicitar Apresentação</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <input type="text" id="nome" placeholder="Nome completo *" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+        <input type="email" id="email" placeholder="Email *" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+      </div>
+      <input type="text" id="whatsapp" placeholder="WhatsApp *" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+      <input type="text" id="universidade" placeholder="Universidade *" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+      <input type="text" id="docente" placeholder="Docente (opcional)" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+      <input type="text" id="tema" placeholder="Tema *" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <select id="idioma" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+          <option value="Português">Português</option>
+          <option value="English">English</option>
+        </select>
+        <select id="pack" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+          <option value="basico">Básico</option>
+          <option value="normal" selected>Normal</option>
+          <option value="premium">Premium</option>
+        </select>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <input type="number" id="slides" placeholder="Nº de slides *" min="1" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+        <select id="prazo" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+          <option value="normal">Prazo Normal</option>
+          <option value="urgente">Urgente (+30%)</option>
+        </select>
+      </div>
+      <textarea id="observacoes" placeholder="Observações" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition h-32 resize-none"></textarea>
+      <button type="submit" class="w-full bg-amber-400 text-black py-4 rounded-2xl font-semibold hover:bg-amber-500 transition">Continuar para Pagamento</button>
+    </form>
+
+    <aside class="hidden lg:block">
+      <div class="glass p-6 rounded-3xl sticky top-24">
+        <h3 class="text-xl font-semibold mb-4">Resumo</h3>
+        <div class="space-y-3 text-sm text-white/70">
+          <div class="flex justify-between"><span>Pack:</span> <span id="summaryPack">Normal</span></div>
+          <div class="flex justify-between"><span>Idioma:</span> <span id="summaryLang">Português</span></div>
+          <div class="flex justify-between"><span>Slides:</span> <span id="summarySlides">0</span></div>
+          <hr class="border-white/10">
+          <div class="flex justify-between text-lg font-bold text-amber-400"><span>Total:</span> <span id="summaryTotal">0 MZN</span></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/language.js"></script>
+  <script src="assets/js/calculator.js"></script>
+  <script src="assets/js/request.js"></script>
+  <script>
+    if (!requireAuth()) throw new Error();
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento Confirmado · SlideCraft</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0a0a0a] min-h-screen flex items-center justify-center p-4">
+  <div class="glass rounded-3xl p-10 text-center max-w-md w-full animate-in">
+    <div class="text-6xl mb-6">🎉</div>
+    <h1 class="text-3xl font-bold mb-4">Pagamento Confirmado</h1>
+    <p class="text-white/50 mb-2">Seu pedido <strong id="orderIdDisplay" class="text-amber-400 font-mono"></strong></p>
+    <p class="text-white/50 mb-8">está agora em produção.</p>
+    <div class="space-y-4">
+      <a id="receiptLink" href="#" target="_blank" class="block w-full border border-amber-400 text-amber-400 py-4 rounded-2xl font-semibold hover:bg-amber-400 hover:text-black transition">
+        📄 Baixar Recibo (PDF)
+      </a>
+      <a href="status.html" class="block w-full bg-amber-400 text-black py-4 rounded-2xl font-semibold hover:bg-amber-500 transition">
+        Acompanhar Pedido
+      </a>
+    </div>
+  </div>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    if (!requireAuth()) throw new Error('Redirecionando...');
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('orderId');
+    document.getElementById('orderIdDisplay').textContent = orderId;
+    document.getElementById('receiptLink').href = `http://localhost:3000/receipts/recibo_${orderId}.pdf`;
+  </script>
+</body>
+</html>

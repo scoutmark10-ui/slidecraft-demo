@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Admin · SlideCraft</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="assets/css/style.css" />
+	</head>
+	<body class="bg-[#0a0a0a] min-h-screen">
+		<main class="max-w-6xl mx-auto px-4 py-10">
+			<h1 class="text-3xl font-bold mb-8">Painel Administrativo</h1>
+
+			<!-- Dashboard -->
+			<div id="adminDashboard">
+				<div class="flex justify-between items-center mb-8">
+					<p class="text-white/60">Bem-vindo, administrador</p>
+					<button
+						onclick="logout()"
+						class="text-red-400 hover:text-red-300 transition text-sm"
+					>
+						Sair
+					</button>
+				</div>
+				<div id="ordersTable" class="space-y-4"></div>
+			</div>
+		</main>
+
+		<script src="assets/js/auth.js"></script>
+		<script>
+			if (!requireAuth() || !isAdmin()) {
+				window.location.href = "login.html";
+			}
+			document.addEventListener("DOMContentLoaded", () => {
+				if (isAdmin()) {
+					showDashboard();
+				} else {
+					document.getElementById("adminLogin").classList.remove("hidden");
+				}
+
+				document
+					.getElementById("adminLoginBtn")
+					.addEventListener("click", async () => {
+						const email = document.getElementById("adminEmail").value;
+						const password = document.getElementById("adminPassword").value;
+						try {
+							await adminLogin(email, password);
+							showDashboard();
+						} catch {
+							alert("Credenciais inválidas");
+						}
+					});
+			});
+
+			function showDashboard() {
+				document.getElementById("adminLogin").classList.add("hidden");
+				document.getElementById("adminDashboard").classList.remove("hidden");
+				loadOrders();
+			}
+
+			async function loadOrders() {
+				try {
+					const res = await fetch("http://localhost:3000/api/admin/orders", {
+						headers: { Authorization: `Bearer ${getToken()}` },
+					});
+					if (!res.ok) throw new Error("Erro");
+					const orders = await res.json();
+					renderOrders(orders);
+				} catch {
+					document.getElementById("ordersTable").innerHTML =
+						'<p class="text-red-400">Erro ao carregar pedidos.</p>';
+				}
+			}
+
+			function renderOrders(orders) {
+				if (!orders.length) {
+					document.getElementById("ordersTable").innerHTML =
+						'<p class="text-white/50">Nenhum pedido encontrado.</p>';
+					return;
+				}
+				let html = "";
+				orders.forEach((order) => {
+					html += `
+          <div class="glass p-6 rounded-2xl">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="font-bold font-mono">${order.orderId}</h3>
+                <p class="text-sm text-white/60">${order.nome} · ${order.universidade}</p>
+              </div>
+              <span class="bg-amber-400/10 text-amber-400 px-3 py-1 rounded-full text-xs">${order.status}</span>
+            </div>
+            <div class="text-sm text-white/70">${order.valor} MZN · ${order.slides} slides · ${order.idioma}</div>
+            <div class="mt-3">
+              <a href="http://localhost:3000/receipts/recibo_${order.orderId}.pdf" target="_blank" class="text-amber-400 hover:underline text-sm">📄 Recibo</a>
+            </div>
+          </div>`;
+				});
+				document.getElementById("ordersTable").innerHTML = html;
+			}
+		</script>
+	</body>
+</html>

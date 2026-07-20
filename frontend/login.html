@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Entrar · SlideCraft</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="assets/css/style.css" />
+	</head>
+	<body class="min-h-screen flex items-center justify-center p-4 bg-[#0a0a0a]">
+		<div class="glass rounded-3xl p-8 w-full max-w-md animate-in">
+			<div class="text-center mb-8">
+				<h1 class="text-3xl font-bold">
+					<span class="text-white">Slide</span
+					><span class="text-amber-400">Craft</span>
+				</h1>
+				<p class="text-white/50 mt-2">Bem-vindo de volta</p>
+			</div>
+			<form id="loginForm" class="space-y-5">
+				<input
+					type="email"
+					id="email"
+					placeholder="Email"
+					required
+					class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition"
+				/>
+				<input
+					type="password"
+					id="password"
+					placeholder="Senha"
+					required
+					class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition"
+				/>
+				<button
+					type="submit"
+					class="w-full bg-amber-400 text-black py-4 rounded-2xl font-semibold hover:bg-amber-500 transition"
+				>
+					Entrar
+				</button>
+			</form>
+			<p class="text-center text-white/50 mt-6">
+				Não tem conta?
+				<a href="register.html" class="text-amber-400 hover:underline"
+					>Cadastre-se</a
+				>
+			</p>
+		</div>
+		<script src="assets/js/auth.js"></script>
+		<script>
+			document
+				.getElementById("loginForm")
+				.addEventListener("submit", async (e) => {
+					e.preventDefault();
+					const email = document.getElementById("email").value;
+					const password = document.getElementById("password").value;
+					try {
+						await login(email, password);
+					} catch (err) {
+						alert(err.message);
+					}
+				});
+
+			if (isLoggedIn()) window.location.href = "request.html";
+		</script>
+	</body>
+</html>

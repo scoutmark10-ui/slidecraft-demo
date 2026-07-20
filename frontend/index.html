@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SlideCraft — Apresentações de Impacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .hero-blur { backdrop-filter: blur(2px); }
+    .pack-card:hover { transform: translateY(-8px); }
+    .pack-card { transition: all 0.3s ease; }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] overflow-x-hidden">
+  <div id="navbar-container"></div>
+
+  <!-- Hero -->
+  <section class="relative min-h-[90vh] flex items-center justify-center text-center px-6">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(212,175,55,0.15),transparent_60%)]"></div>
+    <div class="relative z-10 max-w-4xl mx-auto animate-in">
+      <span class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm mb-8">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        Profissionalismo em cada slide
+      </span>
+      <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[1.1]">
+        Apresentações que <br class="hidden sm:block"><span class="text-gradient">falam por si</span>
+      </h1>
+      <p class="text-xl text-white/50 mb-10 max-w-2xl mx-auto">
+        Do briefing à entrega em 24h. Design premium, animações e infográficos que impressionam sua banca.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="login.html" class="bg-amber-400 text-black px-8 py-4 rounded-full font-semibold hover:bg-amber-500 transition shadow-lg shadow-amber-400/20">Começar agora</a>
+        <a href="#como-funciona" class="border border-amber-400 text-amber-400 px-8 py-4 rounded-full font-semibold hover:bg-amber-400 hover:text-black transition">Saiba mais</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona -->
+  <section id="como-funciona" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Como <span class="text-amber-400">funciona</span></h2>
+      <p class="text-white/50 text-lg max-w-2xl mx-auto">Processo simples e rápido, do pedido à entrega.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass p-8 rounded-3xl text-center glass-hover">
+        <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mx-auto mb-6 text-2xl">📝</div>
+        <h3 class="text-xl font-semibold mb-3">1. Briefing</h3>
+        <p class="text-white/50">Preencha o formulário com tema, idioma e número de slides.</p>
+      </div>
+      <div class="glass p-8 rounded-3xl text-center glass-hover">
+        <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mx-auto mb-6 text-2xl">💳</div>
+        <h3 class="text-xl font-semibold mb-3">2. Pagamento</h3>
+        <p class="text-white/50">Pague via M-Pesa, com opção de 50% agora e 50% depois.</p>
+      </div>
+      <div class="glass p-8 rounded-3xl text-center glass-hover">
+        <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mx-auto mb-6 text-2xl">🚀</div>
+        <h3 class="text-xl font-semibold mb-3">3. Entrega</h3>
+        <p class="text-white/50">Receba sua apresentação pronta, revise e baixe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packs -->
+  <section class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Nossos <span class="text-amber-400">Packs</span></h2>
+      <p class="text-white/50 text-lg">Escolha o plano ideal para sua necessidade.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Básico -->
+      <div class="glass rounded-3xl p-8 pack-card">
+        <h3 class="text-2xl font-bold mb-2">Básico</h3>
+        <p class="text-white/50 mb-6">Simples e direto.</p>
+        <div class="text-4xl font-black mb-6">197 <span class="text-lg font-normal text-white/40">MZN/slide</span></div>
+        <ul class="space-y-3 mb-8 text-sm text-white/70">
+          <li>✓ Design clean</li>
+          <li>✓ Até 3 revisões</li>
+          <li>✓ Entrega em 24h</li>
+        </ul>
+        <a href="register.html" class="block text-center border border-amber-400 text-amber-400 py-3 rounded-full font-medium hover:bg-amber-400 hover:text-black transition">Escolher</a>
+      </div>
+      <!-- Normal -->
+      <div class="glass rounded-3xl p-8 pack-card border-amber-400/30 relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-black px-4 py-1 rounded-full text-xs font-bold">MAIS POPULAR</span>
+        <h3 class="text-2xl font-bold mb-2">Normal</h3>
+        <p class="text-white/50 mb-6">Profissional e completo.</p>
+        <div class="text-4xl font-black mb-6">237 <span class="text-lg font-normal text-white/40">MZN/slide</span></div>
+        <ul class="space-y-3 mb-8 text-sm text-white/70">
+          <li>✓ Design profissional</li>
+          <li>✓ Animações leves</li>
+          <li>✓ Infográficos simples</li>
+          <li>✓ 5 revisões</li>
+          <li>✓ Entrega em 48h</li>
+        </ul>
+        <a href="register.html" class="block text-center bg-amber-400 text-black py-3 rounded-full font-medium hover:bg-amber-500 transition">Escolher</a>
+      </div>
+      <!-- Premium -->
+      <div class="glass rounded-3xl p-8 pack-card">
+        <h3 class="text-2xl font-bold mb-2">Premium</h3>
+        <p class="text-white/50 mb-6">O melhor para bancas exigentes.</p>
+        <div class="text-4xl font-black mb-6">297 <span class="text-lg font-normal text-white/40">MZN/slide</span></div>
+        <ul class="space-y-3 mb-8 text-sm text-white/70">
+          <li>✓ Design premium</li>
+          <li>✓ Animações avançadas</li>
+          <li>✓ Infográficos personalizados</li>
+          <li>✓ Revisões ilimitadas</li>
+          <li>✓ Entrega prioritária</li>
+        </ul>
+        <a href="register.html" class="block text-center bg-amber-400 text-black py-3 rounded-full font-medium hover:bg-amber-500 transition">Escolher</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vantagens -->
+  <section class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">Por que <span class="text-amber-400">SlideCraft?</span></h2>
+        <ul class="space-y-4 text-white/70">
+          <li class="flex gap-3"><span class="text-amber-400">✓</span> Design inspirado nas melhores apresentações do mundo.</li>
+          <li class="flex gap-3"><span class="text-amber-400">✓</span> Pagamento 50/50: comece com metade, pague o restante na entrega.</li>
+          <li class="flex gap-3"><span class="text-amber-400">✓</span> Suporte via WhatsApp durante todo o processo.</li>
+          <li class="flex gap-3"><span class="text-amber-400">✓</span> Recibo fiscal e acompanhamento online do pedido.</li>
+        </ul>
+      </div>
+      <div class="glass p-8 rounded-3xl">
+        <div class="text-5xl font-black text-amber-400 mb-2">+500</div>
+        <p class="text-white/50 text-lg">Apresentações entregues com sucesso</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-24 px-6 max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-16">Dúvidas <span class="text-amber-400">frequentes</span></h2>
+    <div class="space-y-4">
+      <details class="glass p-6 rounded-2xl">
+        <summary class="font-semibold cursor-pointer">Como é o processo de criação?</summary>
+        <p class="mt-3 text-white/60">Você envia o briefing, nossa equipa cria os slides e você pode solicitar revisões até ficar perfeito.</p>
+      </details>
+      <details class="glass p-6 rounded-2xl">
+        <summary class="font-semibold cursor-pointer">Posso pagar apenas 50%?</summary>
+        <p class="mt-3 text-white/60">Sim! No checkout escolha "Pagar 50% agora". O restante é pago quando a apresentação estiver pronta.</p>
+      </details>
+      <details class="glass p-6 rounded-2xl">
+        <summary class="font-semibold cursor-pointer">Qual o prazo de entrega?</summary>
+        <p class="mt-3 text-white/60">Depende do número de slides: até 10 slides em 24h, 11-20 em 48h, acima disso sob consulta.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="py-24 text-center px-6">
+    <div class="glass max-w-3xl mx-auto p-12 rounded-3xl">
+      <h2 class="text-4xl font-bold mb-4">Pronto para <span class="text-amber-400">impressionar?</span></h2>
+      <p class="text-white/50 mb-8">Crie sua conta e comece agora mesmo.</p>
+      <a href="register.html" class="bg-amber-400 text-black px-10 py-4 rounded-full font-semibold hover:bg-amber-500 transition shadow-xl shadow-amber-400/20">Criar conta gratuita</a>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/5 py-8 text-center text-white/30 text-sm">
+    © 2025 SlideCraft Demo. Todos os direitos reservados.
+  </footer>
+
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/language.js"></script>
+</body>
+</html>

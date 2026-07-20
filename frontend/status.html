@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Pedidos · SlideCraft</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0a0a0a] min-h-screen">
+  <div id="navbar-container"></div>
+  <main class="max-w-3xl mx-auto px-4 py-10">
+    <h2 class="text-3xl font-bold mb-8">Meus Pedidos</h2>
+    <div class="flex gap-3 mb-8">
+      <input type="text" id="orderIdInput" placeholder="ID do pedido (ex: SC-2026-00001)" class="flex-1 bg-white/5 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-amber-400 transition">
+      <button id="searchOrder" class="bg-amber-400 text-black px-6 rounded-2xl font-semibold hover:bg-amber-500 transition">Buscar</button>
+    </div>
+    <div id="ordersList" class="space-y-4"></div>
+  </main>
+
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/language.js"></script>
+  <script>
+    if (!requireAuth()) throw new Error('Redirecionando...');
+
+    const statusIcons = {
+      'Recebido': '⚪',
+      'Pagamento confirmado': '🔵',
+      'Em produção': '🟡',
+      'Em revisão': '🟠',
+      'Concluído': '🟢',
+      'Entregue': '✅'
+    };
+
+    function buscarPedido(orderId) {
+      fetch(`http://localhost:3000/api/orders/${orderId}`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+      })
+      .then(res => res.json())
+      .then(data => renderOrder(data))
+      .catch(() => document.getElementById('ordersList').innerHTML = '<p class="text-red-400">Pedido não encontrado.</p>');
+    }
+
+    function renderOrder(order) {
+      const icon = statusIcons[order.status] || '⚪';
+      document.getElementById('ordersList').innerHTML = `
+        <div class="glass p-6 rounded-3xl">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h3 class="text-xl font-bold font-mono">${order.orderId}</h3>
+              <p class="text-white/50 text-sm">${new Date(order.createdAt).toLocaleDateString('pt-MZ')}</p>
+            </div>
+            <span class="text-2xl">${icon}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm mb-4">
+            <div><span class="text-white/50">Status:</span> ${order.status}</div>
+            <div><span class="text-white/50">Pack:</span> ${order.pack}</div>
+            <div><span class="text-white/50">Slides:</span> ${order.slides}</div>
+            <div><span class="text-white/50">Idioma:</span> ${order.idioma}</div>
+            <div class="col-span-2"><span class="text-white/50">Valor:</span> <strong class="text-amber-400">${order.valor} MZN</strong></div>
+          </div>
+          ${order.hasReceipt ? `<a href="http://localhost:3000/receipts/recibo_${order.orderId}.pdf" target="_blank" class="inline-block border border-amber-400 text-amber-400 px-6 py-2 rounded-full text-sm font-medium hover:bg-amber-400 hover:text-black transition">📄 Recibo</a>` : ''}
+        </div>`;
+    }
+
+    document.getElementById('searchOrder').addEventListener('click', () => {
+      const orderId = document.getElementById('orderIdInput').value.trim();
+      if (orderId) buscarPedido(orderId);
+    });
+
+    // Se tiver pedido salvo no localStorage
+    const stored = JSON.parse(localStorage.getItem('ultimoPedido'));
+    if (stored) {
+      document.getElementById('orderIdInput').value = stored.orderId;
+      buscarPedido(stored.orderId);
+    }
+  </script>
+</body>
+</html>
